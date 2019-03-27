@@ -217,7 +217,7 @@
 
 # Configure Concourse to use credhub
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/credhub?
+  path: /instance_groups/name=web/jobs/name=web/properties/credhub?
   value:
     url: ((external_url)):8844
     tls:
