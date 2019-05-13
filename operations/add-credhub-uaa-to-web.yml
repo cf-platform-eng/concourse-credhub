@@ -125,7 +125,6 @@
         active_key_label: 'KEY-1'
       uaa:
         url: &uaa-url ((external_url)):8443
-        port: 8181
         logging_level: INFO
         scim:
           users:
@@ -195,8 +194,6 @@
         authentication:
           uaa:
             url: *uaa-url
-            #TODO apparantly we can use an internal URL now which would be great for repave. Try it out
-            #internal_url: https://localhost:8844
             verification_key: ((uaa-jwt.public_key))
             ca_certs:
             - ((atc_tls.ca))
