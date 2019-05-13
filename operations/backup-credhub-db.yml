@@ -4,6 +4,7 @@
     name: bbr-credhubdb
     release: credhub
     properties:
+      release_level_backup: true
       credhub:
         data_storage:
           type: postgres

@@ -1,8 +1,5 @@
-uaa_release_version: 60
-uaa_sha: a7c14357ae484e89e547f4f207fb8de36d2b0966
+uaa_release_version: "72.0"
+uaa_sha: "7130e5ac640ed1e1f52c09e76995e4d0680f3b45"
 
-credhub_release_version: 1.9.3
-credhub_sha: 648658efdef2ff18a69914d958bcd7ebfa88027a
-
-backup_restore_sdk_release_version: 1.9.0
-backup_restore_sdk_sha: 2f8f805d5e58f72028394af8e750b2a51a432466
+credhub_release_version: "2.3.0"
+credhub_sha: "3c0feb996b5f1cd4a974fb521e21535f05932908"

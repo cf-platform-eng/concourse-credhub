@@ -149,7 +149,7 @@
           concourse_to_credhub:
             override: true
             authorized-grant-types: client_credentials
-            scope: ""
+            scope: uaa.none
             authorities: credhub.read,credhub.write
             access-token-validity: 1200
             refresh-token-validity: 3600
@@ -191,9 +191,12 @@
     properties:
       credhub:
         port: 8844
+        tls: ((atc_tls))
         authentication:
           uaa:
             url: *uaa-url
+            #TODO apparantly we can use an internal URL now which would be great for repave. Try it out
+            #internal_url: https://localhost:8844
             verification_key: ((uaa-jwt.public_key))
             ca_certs:
             - ((atc_tls.ca))
@@ -204,16 +207,24 @@
           password: ((credhub-db-password))
           database: credhub
           require_tls: false
-        tls: ((atc_tls))
-        log_level: debug
+          #TODO do we want to add TLS?
+          #require_tls: true
+          #tls_ca: ((database-tls.ca))
+        #log_level: debug  # let's not fill up logs
         encryption:
           keys:
           - provider_name: int
-            encryption_password: ((credhub-encryption-password))
+            key_properties:
+              encryption_password: ((credhub-encryption-password))
             active: true
           providers:
           - name: int
             type: internal
+        authorization:
+          permissions:
+          - path: /*
+            actors: ["uaa-client:concourse_to_credhub"]
+            operations: [read,write,delete,read_acl,write_acl]
 
 # Configure Concourse to use credhub
 - type: replace
